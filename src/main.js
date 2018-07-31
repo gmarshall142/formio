@@ -4,6 +4,7 @@ import './plugins/vuetify'
 import App from './App.vue';
 import router from './router';
 import store from './store';
+//import 'font-awesome/css/font-awesome.css' // Ensure you are using css-loader
 
 Vue.config.productionTip = false;
 

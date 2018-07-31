@@ -1,5 +1,7 @@
 <template>
   <v-app>
+
+    <!--<Menu />-->
     <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
@@ -9,30 +11,50 @@
       fixed
       app
     >
-      <v-list>
-        <router-link
+      <v-list dense>
+        <!--<v-list-group-->
+          <!--v-for="(item, i) in items"-->
+          <!--v-model="item.active"-->
+          <!--:key="item.label"-->
+          <!--:prepend-icon="item.icon"-->
+          <!--no-action-->
+        <!--&gt;-->
+        <template
           v-for="(item, i) in items"
-          v-bind:to="{ name: item.title.toLocaleLowerCase() }"
-          class="side_bar_link"
         >
-          <v-list-tile
-            value="true"
-            :key="i"
-          >
-            <v-list-tile-action>
-              <v-icon v-html="item.icon"></v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title v-text="item.title"></v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </router-link>
+          <menu-item :item="item" :index="i" :submenu=false />
+        </template>
+          <!--<v-list-tile-->
+            <!--:key="item.title"-->
+          <!--&gt;-->
+            <!--<v-list-tile-content>-->
+              <!--<v-list-tile-title v-text="item.title">{{item.title}}</v-list-tile-title>-->
+            <!--</v-list-tile-content>-->
+          <!--</v-list-tile>-->
+        <!--</v-list-group>-->
+
+        
+        <!--<router-link-->
+          <!--v-for="(item, i) in items"-->
+          <!--v-bind:to="{ name: item.label.toLocaleLowerCase() }"-->
+          <!--class="side_bar_link"-->
+        <!--&gt;-->
+          <!--<v-list-tile-->
+            <!--value="true"-->
+            <!--:key="i"-->
+          <!--&gt;-->
+            <!--<v-list-tile-action>-->
+              <!--&lt;!&ndash;<v-icon v-html="item.icon"></v-icon>&ndash;&gt;-->
+              <!--<v-icon>{{item.icon}}</v-icon>-->
+            <!--</v-list-tile-action>-->
+            <!--<v-list-tile-content>-->
+              <!--<v-list-tile-title v-text="item.label"></v-list-tile-title>-->
+            <!--</v-list-tile-content>-->
+          <!--</v-list-tile>-->
+        <!--</router-link>-->
       </v-list>
     </v-navigation-drawer>
-    <!--<v-toolbar-->
-      <!--app-->
-      <!--:clipped-left="clipped"-->
-    <!--&gt;-->
+
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -76,33 +98,31 @@
 </template>
 
 <script>
+import MenuItem from './components/MenuItem.vue';
 
-  export default {
-    name: 'App',
-    data() {
-      return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
-        items: [
-          {
-            icon: 'home',
-            title: 'Home'
-          },
-          {
-            icon: 'contact_mail',
-            title: 'About'
-          },
-          {
-            icon: 'bubble_chart',
-            title: 'Inspire'
-          },
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Application Factory'
-      }
-    }
-  }
+export default {
+  name: 'App',
+  components: {
+    'menu-item': MenuItem,
+  },
+  data() {
+    return {
+      clipped: false,
+      drawer: true,
+      fixed: false,
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: 'Application Factory',
+    };
+  },
+  computed: {
+    items() {
+      return this.$store.getters.menuItems;
+    },
+  },
+  mounted() {
+    this.$store.dispatch('fetchMenus');
+  },
+};
 </script>
