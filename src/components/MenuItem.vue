@@ -2,7 +2,7 @@
   <v-list-tile
     slot="activator"
     v-if="item.children.length === 0"
-    to="{ name: item.title.toLocaleLowerCase() }"
+    :to="item.routingPath"
   >
     <v-list-tile-action>
       <v-icon v-html="item.icon"></v-icon>
@@ -12,8 +12,6 @@
       <v-list-tile-title v-else>{{ item.label }}</v-list-tile-title>
     </v-list-tile-content>
   </v-list-tile>
-  <!--v-model="item.active"-->
-  <!--:prepend-icon="item.icon"-->
   <v-list-group
     v-else
     :key="item.label"
@@ -31,25 +29,6 @@
       <menu-item :item="childItem" :index="childIndex" :submenu=true />
     </template>
   </v-list-group>
-
-
-
-  <!--<router-link-->
-    <!--v-bind:to="{ name: item.title.toLocaleLowerCase() }"-->
-    <!--class="side_bar_link"-->
-  <!--&gt;-->
-    <!--<v-list-tile-->
-      <!--value="true"-->
-      <!--:key="index"-->
-    <!--&gt;-->
-      <!--<v-list-tile-action>-->
-        <!--<v-icon v-html="item.icon"></v-icon>-->
-      <!--</v-list-tile-action>-->
-      <!--<v-list-tile-content>-->
-        <!--<v-list-tile-title v-text="item.title"></v-list-tile-title>-->
-      <!--</v-list-tile-content>-->
-    <!--</v-list-tile>-->
-  <!--</router-link>-->
 </template>
 
 <script>
@@ -58,7 +37,12 @@ export default {
   props: ['item', 'index', 'submenu'],
   data() {
     return {};
-  }
+  },
+  computed: {
+    path() {
+      return '/about';
+    },
+  },
 };
 </script>
 
