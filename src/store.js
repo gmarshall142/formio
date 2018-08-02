@@ -18,7 +18,7 @@ export default new Vuex.Store({
       state.menuItems = payload;
     },
     PAGEDATA: (state, payload) => {
-      state.applicationTitle = payload;
+      state.applicationTitle = payload.title;
     },
   },
   actions: {
@@ -40,7 +40,7 @@ export default new Vuex.Store({
         url: `http://localhost:3000/pages/${payload.appid}/${payload.pageid}`,
       })
         .then((response) => {
-          context.commit('PAGEDATA', response.data.title);
+          context.commit('PAGEDATA', response.data);
         })
         .catch((err) => {
           console.log(err.response.data);

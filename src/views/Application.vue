@@ -13,8 +13,16 @@
 <script>
 export default {
   props: ['appid', 'pageid'],
+  data() {
+    return {
+      currentPath: '',
+    };
+  },
   updated() {
-    this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+    if (this.$route.path.startsWith('/apps') && this.$route.path !== this.currentPath) {
+      this.currentPath = this.$route.path;
+      this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+    }
   },
   computed: {
     title() {
