@@ -5,9 +5,9 @@
       <div>(page: {{$route.params.pageid}})</div>
     </div>
 
-    <formio :src="formUrl" v-on:submit="onSubmitMethod"/>
+    <!--<formio :src="formUrl" v-on:submit="onSubmitMethod"/>-->
     <!--<formio src="https://examples.form.io/example" v-on:submit="onSubmitMethod" />-->
-    <!--<formio :form="formData" v-on:submit="onSubmitMethod"/>-->
+    <formio :form="formData" v-on:submit="onSubmitMethod"/>
 
   </div>
 </template>
