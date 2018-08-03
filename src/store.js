@@ -8,10 +8,12 @@ export default new Vuex.Store({
   state: {
     menuItems: [],
     applicationTitle: '',
+    customFormData: {},
   },
   getters: {
     menuItems: state => state.menuItems,
     applicationTitle: state => state.applicationTitle,
+    customFormData: state => state.customFormData,
   },
   mutations: {
     MENUITEMS: (state, payload) => {
@@ -19,6 +21,9 @@ export default new Vuex.Store({
     },
     PAGEDATA: (state, payload) => {
       state.applicationTitle = payload.title;
+    },
+    FORMDATA: (state, payload) => {
+      state.customFormData = payload;
     },
   },
   actions: {
@@ -41,6 +46,18 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('PAGEDATA', response.data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+    },
+    fetchForm: (context, payload) => {
+      axios({
+        method: 'get',
+        url: `http://localhost:3000/pages/formio`,
+      })
+        .then((response) => {
+          context.commit('FORMDATA', response.data);
         })
         .catch((err) => {
           console.log(err.response.data);

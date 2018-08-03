@@ -1,24 +1,22 @@
 <template>
-  <html>
-  <head class="application">
-    <h1>Application: {{title}}</h1>
-  </head>
-  <br />
-  <p>application: {{$route.params.appid}}</p>
-  <br />
-  <p>page: {{$route.params.pageid}}</p>
+  <div>
+    <div class="application">
+      <h1>Application: {{title}}</h1>
+      <div>(page: {{$route.params.pageid}})</div>
+    </div>
 
-  <formio :src="formUrl" v-on:submit="onSubmitMethod" />
-  <!--<formio src="https://examples.form.io/example" v-on:submit="onSubmitMethod" />-->
+    <!--<formio :src="formUrl" v-on:submit="onSubmitMethod"/>-->
+    <!--<formio src="https://examples.form.io/example" v-on:submit="onSubmitMethod" />-->
+    <formio :form="formData" v-on:submit="onSubmitMethod"/>
 
-  </html>
+  </div>
 </template>
 
 <script>
 import { Form } from 'vue-formio';
 
 export default {
-  props: ['appid', 'pageid'],
+  props: ['appid', 'pageid', 'customFormData'],
   data() {
     return {
       currentPath: '',
@@ -26,15 +24,23 @@ export default {
       formUrl: "http://localhost:3000/pages/formio"
     };
   },
+  mounted() {
+    this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+    this.$store.dispatch('fetchForm', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+  },
   updated() {
     if (this.$route.path.startsWith('/apps') && this.$route.path !== this.currentPath) {
       this.currentPath = this.$route.path;
       this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+      this.$store.dispatch('fetchForm', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
     }
   },
   computed: {
     title() {
       return this.$store.getters.applicationTitle;
+    },
+    formData() {
+      return this.$store.getters.customFormData;
     },
   },
   components: {
@@ -52,9 +58,6 @@ export default {
 <style scoped lang="stylus">
   h1
     margin 10px 0 0 20px
-  p
-    margin 10px 20px
-</style>
-<style>
-  /*@import '../assets/styles.sv/formio.full.min.css';*/
+  div
+    margin 20px 20px
 </style>
