@@ -5,6 +5,7 @@ import About from './views/About.vue';
 import Dashboard from './views/Dashboard.vue';
 import Application from './views/Application.vue';
 import Administration from './views/Administration.vue';
+import FormBuilder from './views/FormBuilder.vue';
 import Support from './views/Support.vue';
 import Help from './views/Help.vue';
 
@@ -33,11 +34,6 @@ export default new Router({
       component: Dashboard,
     },
     {
-      path: '/apps/:appid/:pageid',
-      name: 'application',
-      component: Application,
-    },
-    {
       path: '/administration',
       name: 'administration',
       component: Administration,
@@ -51,6 +47,16 @@ export default new Router({
       path: '/help',
       name: 'help',
       component: Help,
+    },
+    {
+      path: '/form builder',
+      name: 'formbuilder',
+      component: FormBuilder,
+    },
+    {
+      path: '/apps/:appid/:pageid',
+      name: 'application',
+      component: Application,
     },
   ],
 });
