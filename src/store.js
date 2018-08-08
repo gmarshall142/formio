@@ -9,6 +9,7 @@ export default new Vuex.Store({
     menuItems: [],
     applicationTitle: '',
     customFormData: {},
+    formBuilderData: {},
   },
   getters: {
     menuItems: state => state.menuItems,
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     FORMDATA: (state, payload) => {
       state.customFormData = payload;
+    },
+    FORMBUILDERDATA: (state, payload) => {
+      state.formBuilderData = payload;
     },
   },
   actions: {
@@ -58,6 +62,22 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('FORMDATA', response.data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+    },
+    saveFormBuilder: (context, payload) => {
+      axios({
+        method: 'post',
+        data: payload,
+        url: `http://localhost:3000/pages/formio`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => {
+          context.commit('FORMBUILDERDATA', response.data);
         })
         .catch((err) => {
           console.log(err.response.data);

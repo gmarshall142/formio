@@ -11,7 +11,9 @@
         v-on:submit="handleSubmit"
       ></fbuilder>
     </div>
-    <!--<div id="formbuilder"/>-->
+    <div style="margin-top: 20px;">
+      <v-btn color="success" v-on:click="handleSave">Save</v-btn>
+    </div>
   </div>
 </template>
 
@@ -23,23 +25,19 @@ export default {
   components: {
     fbuilder: FormBuilder,
   },
-  // mounted() {
-  //   require('brace/ext/language_tools'); //language extension prerequsite...
-  //   require('brace/mode/html');
-  //   require('brace/mode/javascript');    //language
-  //   require('brace/mode/less');
-  //   require('brace/theme/chrome') ;
-  //   require('brace/snippets/javascript'); //snippet
-  // },
   methods: {
     handleChange: function(schema) {
-      console.log(schema);
-      //console.log(this);
+      // console.log(schema);
     },
     handleSubmit: function(schema) {
       console.log(schema);
-      const formStr = this.$refs['formBuilder'].builder.form;
-      console.log(JSON.stringify(formStr));
+      // const formStr = this.$refs['formBuilder'].builder.form;
+      // console.log(JSON.stringify(formStr));
+    },
+    handleSave: function() {
+      const jsonData = JSON.stringify(this.$refs['formBuilder'].builder.form);
+      console.log(jsonData);
+      this.$store.dispatch('saveFormBuilder', jsonData);
     },
   },
 };

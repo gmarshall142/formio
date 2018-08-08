@@ -11,6 +11,7 @@ import BootstrapVue from 'bootstrap-vue';
 // import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // import "../node_modules/bootswatch/yeti/_bootswatch.scss";
 import "../node_modules/formiojs/dist/formio.full.css";
+import "../node_modules/formiojs/dist/formio.builder.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap-vue/dist/bootstrap-vue.css";
 // import { editor } from 'vue2-ace-editor';
