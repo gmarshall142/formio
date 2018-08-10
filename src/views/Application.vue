@@ -16,7 +16,7 @@
 import { Form } from 'vue-formio';
 
 export default {
-  props: ['appid', 'pageid', 'customFormData'],
+  props: ['appid', 'pageid'],
   data() {
     return {
       currentPath: '',
