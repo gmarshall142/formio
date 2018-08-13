@@ -10,9 +10,9 @@ export default new Vuex.Store({
     applicationTitle: '',
     customFormData: {},
     formBuilder: {
-      appId: '',
-      pageId: '',
-      formId: '',
+      appid: '',
+      pageid: '',
+      formid: '',
       data: {},
     },
   },
@@ -21,9 +21,9 @@ export default new Vuex.Store({
     applicationTitle: state => state.applicationTitle,
     customFormData: state => state.customFormData,
     formBuilderData: state => state.formBuilder.data,
-    formBuilderAppId: state => state.formBuilder.appId,
-    formBuilderPageId: state => state.formBuilder.pageId,
-    formBuilderFormId: state => state.formBuilder.formId,
+    formBuilderAppId: state => state.formBuilder.appid,
+    formBuilderPageId: state => state.formBuilder.pageid,
+    formBuilderFormId: state => state.formBuilder.formid,
   },
   mutations: {
     MENUITEMS: (state, payload) => {
@@ -35,17 +35,26 @@ export default new Vuex.Store({
     FORMDATA: (state, payload) => {
       state.customFormData = payload;
     },
+    updateFormBuilderAppId: (state, payload) => {
+      state.formBuilder.appid = payload;
+    },
+    updateFormBuilderPageId: (state, payload) => {
+      state.formBuilder.pageid = payload;
+    },
     FORMBUILDERDATA: (state, payload) => {
       state.formBuilder.data = payload;
     },
     FORMBUILDERIDS: (state, payload) => {
-      state.formBuilder.appId = String(payload.appid);
-      state.formBuilder.pageId = String(payload.pageid);
+      state.formBuilder.appid = String(payload.appid);
+      state.formBuilder.pageid = String(payload.pageid);
       // this.$set(state.formBuilder, 'appId', String(payload.appid));
       // this.$set(state.formBuilder, 'pageId', String(payload.pageid));
     },
     FORMBUILDERFORMID: (state, payload) => {
       state.formBuilder.formId = String(payload);
+    },
+    SETFORMBUILDERFORM: (state, payload) => {
+      state.formBuilder = payload;
     },
   },
   actions: {
@@ -99,8 +108,14 @@ export default new Vuex.Store({
         });
     },
     clearFormBuilder: (context) => {
-      context.commit('FORMBUILDERDATA', {display: 'form'});
-      context.commit('FORMBUILDERIDS', {appid: '', pageid: ''});
+      context.commit('SETFORMBUILDERFORM',
+        {
+          appid: '',
+          pageid: '',
+          formid: '',
+          data: {},
+        },
+      );
     },
     saveFormBuilderToFile: (context, payload) => {
       axios({
@@ -128,16 +143,16 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          context.commit('FORMBUILDERDATA', response.data);
+          context.commit('SETFORMBUILDERFORM', response.data);
         })
         .catch((err) => {
           console.log(err.response.data);
-          context.commit('FORMBUILDERDATA', {display: 'form'});
+          context.dispatch('clearFormBuilder');
         });
     },
     saveFormBuilder: (context, payload) => {
       const formId = payload.formid;
-      if (formId === '') {
+      if (formId  === undefined || formId === '') {
         // add
         axios({
           method: 'post',
@@ -181,13 +196,16 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          context.commit('FORMBUILDERDATA', response.data.formjson);
-          context.commit('FORMBUILDERFORMID', response.data.formid);
+          if (response.data.formid === null) {
+            response.data.formid = '';
+          }
+          // context.commit('FORMBUILDERDATA', response.data.formjson);
+          // context.commit('FORMBUILDERFORMID', response.data.formid);
+          context.commit('SETFORMBUILDERFORM', response.data);
         })
         .catch((err) => {
           console.log(err.response.data);
-          context.commit('FORMBUILDERDATA', {display: 'form'});
-          context.commit('FORMBUILDERFORMID', '');
+          context.dispatch('clearFormBuilder');
         });
     },
   },

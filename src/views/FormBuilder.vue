@@ -44,14 +44,30 @@ export default {
   // props: ['formBuilderData'],
   data() {
     return {
-      appid: this.$store.state.formBuilder.appId,
-      pageid: this.$store.state.formBuilder.pageId,
+      // appid: this.$store.state.formBuilder.appId,
+      // pageid: this.$store.state.formBuilder.pageId,
     };
   },
   components: {
     fbuilder: FormBuilder,
   },
   computed: {
+    appid: {
+      get()  {
+        return this.$store.state.formBuilder.appid;
+      },
+      set(value) {
+        this.$store.commit('updateFormBuilderAppId', value);
+      }
+    },
+    pageid: {
+      get()  {
+        return this.$store.state.formBuilder.pageid;
+      },
+      set(value) {
+        this.$store.commit('updateFormBuilderPageId', value);
+      }
+    },
     formBuilderData() {
       return this.$store.getters.formBuilderData;
     },
@@ -76,8 +92,6 @@ export default {
   methods: {
     clearForm: function() {
       this.$store.dispatch('clearFormBuilder');
-      this.appid = '';
-      this.pageid = '';
     },
     handleChange: function(schema) {
       // console.log(schema);
