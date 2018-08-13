@@ -82,25 +82,14 @@ export default new Vuex.Store({
           console.log(err.response.data);
         });
     },
-    // fetchForm: (context, payload) => {
-    //   axios({
-    //     method: 'get',
-    //     url: `http://localhost:3000/pages/formio`,
-    //   })
-    //     .then((response) => {
-    //       context.commit('FORMDATA', response.data);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.response.data);
-    //     });
-    // },
     fetchForm: (context, payload) => {
       axios({
         method: 'get',
-        url: `http://localhost:3000/pages/form/${payload.appid}/${payload.pageid}`,
+        url: `http://localhost:3000/pages/forms/${payload.appid}/${payload.pageid}`,
       })
         .then((response) => {
-          context.commit('FORMDATA', response.data);
+          context.commit('PAGEDATA', response.data);
+          context.commit('FORMDATA', response.data.data);
         })
         .catch((err) => {
           console.log(err.response.data);

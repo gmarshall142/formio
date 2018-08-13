@@ -25,13 +25,13 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
-    this.$store.dispatch('fetchForm', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+    // this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+    // this.$store.dispatch('fetchForm', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
   },
   updated() {
     if (this.$route.path.startsWith('/apps') && this.$route.path !== this.currentPath) {
       this.currentPath = this.$route.path;
-      this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
+      // this.$store.dispatch('fetchPage', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
       this.$store.dispatch('fetchForm', {appid: this.$route.params.appid, pageid: this.$route.params.pageid});
     }
   },
