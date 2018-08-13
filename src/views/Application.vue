@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="application">
-      <h1>Application: {{title}}</h1>
+      <h1>{{title}}</h1>
       <div>(page: {{$route.params.pageid}})</div>
     </div>
 

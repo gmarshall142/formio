@@ -68,12 +68,20 @@ export default {
         this.$store.commit('updateFormBuilderPageId', value);
       }
     },
+    formid: {
+      get()  {
+        return this.$store.state.formBuilder.formid;
+      },
+      set(value) {
+        this.$store.commit('updateFormBuilderFormId', value);
+      }
+    },
     formBuilderData() {
       return this.$store.getters.formBuilderData;
     },
-    formid()  {
-      return this.$store.state.formBuilder.formId;
-    },
+    // formid()  {
+    //   return this.$store.state.formBuilder.formId;
+    // },
     // appid() {
     //   return this.$store.getters.formBuilderAppId;
     // },

@@ -41,6 +41,9 @@ export default new Vuex.Store({
     updateFormBuilderPageId: (state, payload) => {
       state.formBuilder.pageid = payload;
     },
+    updateFormBuilderFormId: (state, payload) => {
+      state.formBuilder.formid = payload;
+    },
     FORMBUILDERDATA: (state, payload) => {
       state.formBuilder.data = payload;
     },
