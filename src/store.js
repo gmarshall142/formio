@@ -33,7 +33,7 @@ export default new Vuex.Store({
       state.applicationTitle = payload.title;
     },
     FORMDATA: (state, payload) => {
-      state.customFormData = payload;
+      state.customFormData = (payload !== null ? payload : {});
     },
     updateFormBuilderAppId: (state, payload) => {
       state.formBuilder.appid = payload;
@@ -50,8 +50,6 @@ export default new Vuex.Store({
     FORMBUILDERIDS: (state, payload) => {
       state.formBuilder.appid = String(payload.appid);
       state.formBuilder.pageid = String(payload.pageid);
-      // this.$set(state.formBuilder, 'appId', String(payload.appid));
-      // this.$set(state.formBuilder, 'pageId', String(payload.pageid));
     },
     FORMBUILDERFORMID: (state, payload) => {
       state.formBuilder.formId = String(payload);

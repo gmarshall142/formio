@@ -44,8 +44,6 @@ export default {
   // props: ['formBuilderData'],
   data() {
     return {
-      // appid: this.$store.state.formBuilder.appId,
-      // pageid: this.$store.state.formBuilder.pageId,
     };
   },
   components: {
@@ -79,15 +77,6 @@ export default {
     formBuilderData() {
       return this.$store.getters.formBuilderData;
     },
-    // formid()  {
-    //   return this.$store.state.formBuilder.formId;
-    // },
-    // appid() {
-    //   return this.$store.getters.formBuilderAppId;
-    // },
-    // pageid() {
-    //   return this.$store.getters.formBuilderPageId;
-    // },
   },
   watch: {
     formBuilderData(newVal, oldVal) {

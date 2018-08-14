@@ -15,6 +15,10 @@ import "../node_modules/formiojs/dist/formio.builder.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap-vue/dist/bootstrap-vue.css";
 // import { editor } from 'vue2-ace-editor';
+import { editor } from 'ace-vue2';
+import '../node_modules/brace/mode/javascript';
+import '../node_modules/brace/mode/json';
+import '../node_modules/brace/theme/chrome';
 
 Vue.config.productionTip = false;
 
@@ -22,6 +26,6 @@ new Vue({
   router,
   store,
   BootstrapVue,
-  // editor,
+  editor,
   render: h => h(App),
 }).$mount('#app');
