@@ -63,12 +63,18 @@
 </template>
 
 <script>
+import { Formio } from 'formiojs';
 import MenuItem from './components/MenuItem.vue';
+// import CustomComponent2 from './components/CustomComponent2.vue';
+// import { BaseComponent } from 'formiojs';
+// import { CustomComponent } from './components/form_components/customcomponent/CustomComponent.js';
+const CustomComponent = require('./components/form_components/customcomponent/CustomComponent');
 
 export default {
   name: 'App',
   components: {
     'menu-item': MenuItem,
+    'custom-component': CustomComponent,
   },
   data() {
     return {
@@ -87,7 +93,30 @@ export default {
     },
   },
   mounted() {
+    console.log('mounted');
     this.$store.dispatch('fetchMenus');
+    //const customComponent = new CustomComponent2();
+    Formio.registerComponent('custom-component', CustomComponent.default);
+    //   {
+    //   fbtemplate: 'formio/formbuilder/fivestar.html',
+    //   icon: 'fa fa-gavel',
+    //   noDndOverlay: true,
+    //   confirmRemove: true,
+    //   views: [
+    //     {
+    //       name: 'Display',
+    //       template: 'formio/components/fivestar/display.html'
+    //     },
+    //     {
+    //       name: 'API',
+    //       template: 'formio/components/common/api.html'
+    //     },
+    //     {
+    //       name: 'Conditional',
+    //       template: 'formio/components/common/conditional.html'
+    //     }
+    //   ]
+    // });
   },
 };
 </script>
