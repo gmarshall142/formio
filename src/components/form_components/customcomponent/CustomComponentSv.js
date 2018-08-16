@@ -434,7 +434,7 @@ var CustomComponentSv = function (_BaseComponent) {
       }
 
       return _Base2.default.schema.apply(_Base2.default, [{
-        type: 'button',
+        type: 'customcomponentsv',
         label: 'Submit',
         key: 'submit',
         size: 'md',

@@ -95,8 +95,8 @@ export default {
   mounted() {
     console.log('mounted');
     this.$store.dispatch('fetchMenus');
-    Formio.registerComponent('custom-component-sv', CustomComponentSv.default);
-    Formio.registerComponent('custom-component', CustomComponent);
+    Formio.registerComponent('customcomponentsv', CustomComponentSv.default);
+    Formio.registerComponent('customcomponent', CustomComponent);
   },
 };
 </script>
