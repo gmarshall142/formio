@@ -4,7 +4,24 @@
 //   value: true
 // });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+    console.log(JSON.stringify(target));
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
 
 var _set = function set(object, property, value, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent !== null) { set(parent, property, value, receiver); } } else if ("value" in desc && desc.writable) { desc.value = value; } else { var setter = desc.set; if (setter !== undefined) { setter.call(receiver, value); } } return value; };
 
@@ -58,8 +75,6 @@ var CustomComponentSv = function (_BaseComponent) {
     }
   }, {
     key: 'createLabel',
-
-
     // No label needed for buttons.
     value: function createLabel() {}
   }, {
@@ -437,11 +452,11 @@ var CustomComponentSv = function (_BaseComponent) {
     key: 'builderInfo',
     get: function get() {
       return {
-        title: 'CustomComponentSv',
+        title: 'CustomCompSv',
         group: 'basic',
         icon: 'fa fa-stop',
         documentation: 'http://help.form.io/userguide/#button',
-        weight: 110,
+        weight: 109,
         schema: CustomComponentSv.schema()
       };
     }

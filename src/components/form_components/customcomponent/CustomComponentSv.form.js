@@ -19,7 +19,7 @@ var _Base = require('../../../../node_modules/formiojs/components/base/Base.form
 
 var _Base2 = _interopRequireDefault(_Base);
 
-var _CustomComponentEdit = require('./editForm/CustomComponent.edit.display');
+var _CustomComponentEdit = require('./editForm/CustomComponentSv.edit.display');
 
 var _CustomComponent2 = _interopRequireDefault(_CustomComponentEdit);
 
