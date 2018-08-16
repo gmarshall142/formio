@@ -14,7 +14,7 @@ import { BaseComponent } from 'formiojs';
 
 export default {
   extends: BaseComponent,
-  name: 'CustomComponent2',
+  name: 'CustomComponent',
   props: {
   },
   methods: {
@@ -26,7 +26,7 @@ export default {
         icon: 'fa fa-html5',
         documentation: 'http://help.form.io/userguide/#custom-component',
         weight: 100,
-        //schema: CustomComponent2.schema()
+        //schema: CustomComponent.schema()
       };
     }
   }
