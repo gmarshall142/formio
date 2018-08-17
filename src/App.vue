@@ -67,8 +67,9 @@ import { Formio } from 'formiojs';
 import MenuItem from './components/MenuItem.vue';
 // import CustomComponent from './components/CustomComponent.vue';
 // import { BaseComponent } from 'formiojs';
-import { CustomComponent } from './components/form_components/customcomponent/CustomComponent.js';
-const CustomComponentSv = require('./components/form_components/customcomponent/CustomComponentSv');
+// import { CustomComponent } from './components/form_components/customcomponent/CustomComponent.js';
+// const CustomComponentSv = require('./components/form_components/customcomponent/CustomComponentSv');
+const CustomComponent = require('./components/form_components/customcomponent/CustomComponent.js');
 
 export default {
   name: 'App',
@@ -95,8 +96,8 @@ export default {
   mounted() {
     console.log('mounted');
     this.$store.dispatch('fetchMenus');
-    Formio.registerComponent('customcomponentsv', CustomComponentSv.default);
-    Formio.registerComponent('customcomponent', CustomComponent);
+    // Formio.registerComponent('customcomponentsv', CustomComponentSv.default);
+    Formio.registerComponent('customcomponent', CustomComponent.default);
   },
 };
 </script>
