@@ -1,24 +1,18 @@
 'use strict';
+const _lodash = require('lodash');
+const _Base = require('../../../../node_modules/formiojs/components/base/Base');
+const _BaseForm = require('../../../../node_modules/formiojs/components/base/Base.form');
+const _CustomComponentEdit = require('./editForm/CustomComponent.edit.display');
+const _utils = require('../../../../node_modules/formiojs/utils/utils');
+const _set = function set(object, property, value, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent !== null) { set(parent, property, value, receiver); } } else if ("value" in desc && desc.writable) { desc.value = value; } else { var setter = desc.set; if (setter !== undefined) { setter.call(receiver, value); } } return value; };
+const _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _set = function set(object, property, value, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent !== null) { set(parent, property, value, receiver); } } else if ("value" in desc && desc.writable) { desc.value = value; } else { var setter = desc.set; if (setter !== undefined) { setter.call(receiver, value); } } return value; };
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _Base = require('../../../../node_modules/formiojs/components/base/Base');
-
-var _Base2 = _interopRequireDefault(_Base);
-
-var _utils = require('../../../../node_modules/formiojs/utils/utils');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -35,25 +29,16 @@ function _inherits(subClass, superClass) {
   if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
 
-var _BaseForm = require('../../../../node_modules/formiojs/components/base/Base.form');
-
-var _BaseForm2 = _interopRequireDefault(_BaseForm);
-
-var _CustomComponentEdit = require('./editForm/CustomComponent.edit.display');
-
-var _CustomComponent2 = _interopRequireDefault(_CustomComponentEdit);
-
 
 const CustomComponent = function (_BaseComponent) {
   _inherits(CustomComponent, _BaseComponent);
 
   function CustomComponent() {
-    _classCallCheck(this, CustomComponent);
     return _possibleConstructorReturn(this, (CustomComponent.__proto__ || Object.getPrototypeOf(CustomComponent)).apply(this, arguments));
   }
 
   return CustomComponent;
-}(_Base2.default);
+}(_Base.default);
 
 Object.defineProperty(CustomComponent, 'builderInfo', {
   get: function () {
@@ -190,7 +175,7 @@ CustomComponent.prototype.build = function() {
         var flattened = (0, _utils.flattenComponents)(form.component.components, true);
         // Create object containing the corresponding HTML element components
         var components = {};
-        _lodash2.default.each(flattened, function (component, key) {
+        _lodash.default.each(flattened, function (component, key) {
           var element = form.getComponent(key);
           if (element) {
             components[key] = element;
@@ -331,9 +316,10 @@ CustomComponent.editForm = function() {
     extend[_key] = arguments[_key];
   }
 
-  return _BaseForm2.default.apply(undefined, [[{
+  return _BaseForm.default.apply(undefined, [[{
     key: 'display',
-    components: _CustomComponent2.default
+    // components: _CustomComponent2.default
+    components: _CustomComponentEdit.default
   }]].concat(extend));
 };
 
