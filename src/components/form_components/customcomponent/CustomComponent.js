@@ -267,8 +267,19 @@ CustomComponent.prototype.build = function() {
 };
 CustomComponent.prototype.elementInfo = function() {
   const info = _get(CustomComponent.prototype.__proto__ || Object.getPrototypeOf(CustomComponent.prototype), 'elementInfo', this).call(this);
-  info.type = 'input';
-  info.changeEvent = 'input';
+  info.type = 'button';
+  info.attr.type = ['submit', 'saveState'].indexOf(this.component.action) !== -1 ? 'submit' : 'button';
+  this.component.theme = this.component.theme || 'default';
+  info.attr.class = 'btn btn-' + this.component.theme;
+  if (this.component.size) {
+    info.attr.class += ' btn-' + this.component.size;
+  }
+  if (this.component.block) {
+    info.attr.class += ' btn-block';
+  }
+  if (this.component.customClass) {
+    info.attr.class += ' ' + this.component.customClass;
+  }
   return info;
 };
 // No label needed for buttons.
